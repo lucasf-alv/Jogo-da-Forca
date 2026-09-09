@@ -1,11 +1,50 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+
+import ButtonLetter from "./components/ButtonLetter";
+import InputLetter from "./components/InputLetter";
 
 export default function App() {
+  const letras: string[] = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text>Jogo da Forca</Text>
+
       <StatusBar style="auto" />
+
+      <View style={styles.letras}>
+        {letras.map((letra) => (
+          <ButtonLetter key={letra} letter={letra} />
+        ))}
+      </View>
     </View>
   );
 }
@@ -13,8 +52,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20,
+  },
+
+  letras: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
   },
 });
