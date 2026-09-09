@@ -58,11 +58,19 @@ export default function Game({ route, navigation }: Props) {
 
       console.log("Acertou!");
     } else {
-      setErros((erros) => erros + 1);
+      setErros((erros) => {
+        const novosErros = erros + 1;
+
+        if (novosErros === 5) {
+          navigation.navigate("Result", { erros: novosErros });
+        }
+
+        return novosErros;
+      });
+
       console.log("Errou!");
     }
   }
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>JOGO DA FORCA</Text>

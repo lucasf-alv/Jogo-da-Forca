@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   Modal,
   View,
@@ -31,16 +32,17 @@ export default function ModalInitGame({ setModal, onStart }: IModalInitGame) {
       <View style={styles.overlay}>
         <View style={styles.modal}>
           <Pressable style={styles.closeButton} onPress={() => setModal(false)}>
-            <Text style={styles.closeText}>X</Text>
+            <Text style={styles.closeText}>×</Text>
           </Pressable>
 
-          <Text style={styles.title}>Iniciar jogo</Text>
+          <Text style={styles.title}>INICIAR JOGO</Text>
 
-          <Text style={styles.label}>Digite a palavra:</Text>
+          <Text style={styles.label}>Escolha uma palavra</Text>
 
           <TextInput
             style={styles.input}
             placeholder="Digite uma palavra"
+            placeholderTextColor="#9CA3AF"
             value={palavra}
             onChangeText={(texto) => {
               setPalavra(texto);
@@ -52,7 +54,7 @@ export default function ModalInitGame({ setModal, onStart }: IModalInitGame) {
           {erro !== "" && <Text style={styles.error}>{erro}</Text>}
 
           <Pressable style={styles.button} onPress={validarPalavra}>
-            <Text style={styles.buttonText}>Começar</Text>
+            <Text style={styles.buttonText}>COMEÇAR</Text>
           </Pressable>
         </View>
       </View>
@@ -63,64 +65,81 @@ export default function ModalInitGame({ setModal, onStart }: IModalInitGame) {
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    backgroundColor: "rgba(0, 0, 0, 0.75)",
     justifyContent: "center",
     alignItems: "center",
   },
 
   modal: {
     width: "85%",
-    backgroundColor: "white",
-    borderRadius: 15,
+    backgroundColor: "#1F2937",
+    borderRadius: 20,
     padding: 25,
+    borderWidth: 2,
+    borderColor: "#7C3AED",
   },
 
   closeButton: {
     position: "absolute",
     right: 15,
-    top: 15,
-    padding: 5,
+    top: 10,
+    width: 35,
+    height: 35,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   closeText: {
-    fontSize: 20,
+    color: "#EC4899",
+    fontSize: 32,
     fontWeight: "bold",
   },
 
   title: {
-    fontSize: 24,
+    color: "#EC4899",
+    fontSize: 26,
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 25,
+    letterSpacing: 2,
+    marginBottom: 30,
   },
 
   label: {
+    color: "#D1D5DB",
     fontSize: 16,
-    marginBottom: 8,
+    fontWeight: "bold",
+    marginBottom: 10,
   },
 
   input: {
-    borderWidth: 1,
-    borderColor: "#999",
-    borderRadius: 8,
-    padding: 12,
-    fontSize: 16,
+    backgroundColor: "#111827",
+    borderWidth: 2,
+    borderColor: "#7C3AED",
+    borderRadius: 10,
+    padding: 14,
+    fontSize: 17,
+    color: "#FFFFFF",
   },
 
   error: {
-    marginTop: 8,
+    color: "#F43F5E",
     fontSize: 14,
+    fontWeight: "bold",
+    marginTop: 8,
   },
 
   button: {
-    marginTop: 20,
-    padding: 14,
-    borderRadius: 8,
+    backgroundColor: "#EC4899",
+    marginTop: 25,
+    padding: 15,
+    borderRadius: 10,
     alignItems: "center",
   },
 
   buttonText: {
+    color: "#FFFFFF",
     fontSize: 18,
     fontWeight: "bold",
+    letterSpacing: 1,
   },
 });
