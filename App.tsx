@@ -1,63 +1,25 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import ButtonLetter from "./components/ButtonLetter";
-import InputLetter from "./components/InputLetter";
+import Home from "./screens/Home";
+import Game from "./screens/Game";
+
+export type RootStackParamList = {
+  Home: undefined;
+  Game: {
+    palavra: string;
+  };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-  const letras: string[] = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-  ];
-
   return (
-    <View style={styles.container}>
-      <Text>Jogo da Forca</Text>
-
-      <StatusBar style="auto" />
-
-      <View style={styles.letras}>
-        {letras.map((letra) => (
-          <ButtonLetter key={letra} letter={letra} />
-        ))}
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Game" component={Game} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-
-  letras: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 8,
-  },
-});

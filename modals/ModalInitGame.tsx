@@ -9,32 +9,28 @@ import {
 } from "react-native";
 
 interface IModalInitGame {
-  setModal: () => void;
+  setModal: (value: boolean) => void;
+  onStart: (palavra: string) => void;
 }
 
-export default function ModalInitGame({ setModal }: IModalInitGame) {
+export default function ModalInitGame({ setModal, onStart }: IModalInitGame) {
   const [palavra, setPalavra] = useState("");
   const [erro, setErro] = useState("");
 
-  function iniciarJogo() {
+  function validarPalavra() {
     if (palavra.trim() === "") {
       setErro("Digite uma palavra para começar o jogo.");
       return;
     }
 
-    setErro("");
-
-    console.log("Palavra:", palavra);
-
-    // Aqui você vai iniciar o jogo
+    onStart(palavra.trim().toUpperCase());
   }
 
   return (
     <Modal transparent animationType="fade">
       <View style={styles.overlay}>
         <View style={styles.modal}>
-          {/* Botão X */}
-          <Pressable style={styles.closeButton} onPress={setModal}>
+          <Pressable style={styles.closeButton} onPress={() => setModal(false)}>
             <Text style={styles.closeText}>X</Text>
           </Pressable>
 
@@ -55,7 +51,7 @@ export default function ModalInitGame({ setModal }: IModalInitGame) {
 
           {erro !== "" && <Text style={styles.error}>{erro}</Text>}
 
-          <Pressable style={styles.button} onPress={iniciarJogo}>
+          <Pressable style={styles.button} onPress={validarPalavra}>
             <Text style={styles.buttonText}>Começar</Text>
           </Pressable>
         </View>
